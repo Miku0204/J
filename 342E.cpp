@@ -17,18 +17,18 @@ void dfs(int u, int p) {
 		{
 			depth[v] = depth[u] + 1;
 			par[u][0] = v;
-            dfs(v, u);
-            child[u] += child[v]; 
+                        dfs(v, u);
+                        child[u] += child[v]; 
 		}
     }
 }
 
 int findcen(int u, int p, int sz) {
     for(int i = 0; i < a[u].size() ;i++) {
-    	int v = a[u][i]; 
+    	    int v = a[u][i]; 
 	    if(v != p && !visit[v]) {
                  if(child[v] > sz / 2) return findcen(v, u, sz);
-        }
+            }
     }
     return u;
 }
@@ -36,29 +36,29 @@ int findcen(int u, int p, int sz) {
 int centroid(int root) { 
 	dfs(root, root);
     int cen = findcen(root, root, child[root]);
-    /*
-    .....
-    */
+	
     visit[cen] = true;
-    for(int i = 0; i < a[cen].size() ; i++) {
-    	int v = a[cen][i];
+	
+    for(int i = 0; i < a[cen].size() ; i++) {	    
+    	    int v = a[cen][i];
+	    
 	    if(!visit[v])
 	    {
-            	g[cen].push_back(centroid(v));
-        } 
+            	g[cen].push_back(centroid(v));    // tao thanh cay centroid 
+	    } 
     }
     return cen;
 }
 // ket thuc tim centroid
 // dfs de tim do sau
-void dfs_second(int u , int p) { 
+void dfs_second(int u , int p) { // xay dung cay centroid 
         for(int j = 0;j < g[u].size();j++) {
         	int k = g[u][j];
         	if(k != p) {
         		parent[k] = u;
         		dfs(k,u);
-			}
 		}
+	}
 	
 }
 void RMQ() {
@@ -82,7 +82,7 @@ int LCA(int u, int v) {
 			v = par[v][i];
 		}
 	}
-	return u = par[u][0];
+	return par[u][0];
 }
 int dis(int u, int v) {
 	return (depth[u] + depth[v] - 2*depth[LCA(u,v)]);
