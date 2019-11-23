@@ -95,7 +95,7 @@ matran get(int id , int l , int r , int u , int v) {
 	if(l > v || r < u || l > r) {
 		matran non;
 		non.c[0][0] = 1;
-		non.c[0][0] = 0;                // không đi sâu thêm nữa
+		non.c[0][1] = 0;                // không đi sâu thêm nữa
 		non.c[1][0] = 0;
 		non.c[1][1] = 1;
 		return non;
